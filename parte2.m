@@ -2,10 +2,11 @@
 clearvars;
 init_vars;
 
-alfa = 0.5;
+% Escolha do alfa desejado
+alfa = 0;
 
 %% Simulação
-out = sim('BPSK_RC');
+out = sim('BPSK_rc');
 
 t = squeeze(out.x.time);
 x_pnrz = squeeze(out.x.data);
@@ -20,23 +21,22 @@ clf;
 format_fig(700, 400);
 
 subplot(2, 1, 1);
-plot(fx_pnrz*1e-3, 10*log10(px_pnrz));
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title(sprintf('\\textbf{x}, com $\\alpha = %.1f$', alfa), 'interpreter', 'latex');
+plot(fx_pnrz * 1e-3, 10 * log10(px_pnrz));
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{x}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
+legend(sprintf('$\\alpha = %.1f$', alfa), 'Interpreter', 'latex', 'FontSize', 14)
 xlim([0, 15]);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
 subplot(2, 1, 2);
-plot(fs_bpsk*1e-3, 10*log10(ps_bpsk));
-grid on;
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title(sprintf('\\textbf{s\\_psk\\_rc}, com $\\alpha = %.1f$', alfa), 'interpreter', 'latex');
+plot(fs_bpsk * 1e-3, 10 * log10(ps_bpsk));
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{s\char`_psk\char`_rc}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
+legend(sprintf('$\\alpha = %.1f$', alfa), 'Interpreter', 'latex', 'FontSize', 14)
 xlim([0, 15]);
 xticks([0, 8, 9, 10, 11, 12, 15]);
-
-
-
-
-
-
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 

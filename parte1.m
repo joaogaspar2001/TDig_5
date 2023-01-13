@@ -23,90 +23,101 @@ s_bpsk = squeeze(out.s_bpsk.data);
 
 
 %% Gráficos no tempo
-% Primeiro caso - unipolar NRZ
+% a) unipolar NRZ
 figure(1);
 clf;
 format_fig(900, 200);
 hold on;
 
-plot(t*1e3, x_unrz,'LineWidth',1.2);
-plot(t*1e3, s_ask,'LineWidth',1.2);
+plot(t * 1e3, x_unrz, 'LineWidth', 2);
+plot(t * 1e3, s_ask, 'LineWidth', 2);
 
-xlabel('Tempo [ms]');
-ylabel('Tensão [V]');
-legend('x', 's\_ask');
+xlabel('$t$ [ms]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('Amplitude [V]', 'Interpreter', 'latex', 'FontSize', 18);
+legend('\texttt{x}', '\texttt{s\char`_ask}', 'Interpreter', 'latex', 'FontSize', 14);
 xlim([0, 10]);
-ylim([-1.1, 1.1]);
+ylim([-1.5, 1.5]);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
-% Segundo caso - polar NRZ
+% d) polar NRZ + Troca de fase
 figure(2);
 clf;
 format_fig(900, 200);
 hold on;
 
-plot(t*1e3, x_pnrz,'LineWidth',1.2);
-plot(t*1e3, s_bpsk,'LineWidth',1.2);
+plot(t * 1e3, x_pnrz, 'LineWidth', 2);
+plot(t * 1e3, s_bpsk, 'LineWidth', 2);
 
-xlabel('Tempo [ms]');
-ylabel('Tensão [V]');
-legend('x', 's\_bpsk');
+xlabel('$t$ [ms]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('Amplitude [V]', 'Interpreter', 'latex', 'FontSize', 18);
+legend('\texttt{x}', '\texttt{s\char`_psk}', 'Interpreter', 'latex', 'FontSize', 14);
 xlim([0, 10]);
-ylim([-1.1, 1.1]);
+ylim([-1.5, 1.5]);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
-% Exemplo trocas de fase
 figure(3);
 clf;
 format_fig(900, 200);
 hold on;
 
-plot(t*1e3, x_pnrz,'LineWidth',1.2);
-plot(t*1e3, s_bpsk,'LineWidth',1.2);
+plot(t * 1e3, x_pnrz, 'LineWidth', 2);
+plot(t * 1e3, s_bpsk, 'LineWidth', 2);
 
-xlabel('Tempo [ms]');
-ylabel('Tensão [V]');
-legend('x', 's\_bpsk');
+xlabel('$t$ [ms]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('Amplitude [V]', 'Interpreter', 'latex', 'FontSize', 18);
+legend('\texttt{x}', '\texttt{s\char`_psk}', 'Interpreter', 'latex', 'FontSize', 14);
 xlim([0.9, 2.1]);
-ylim([-1.1, 1.1]);
+ylim([-1.5, 1.5]);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
 
 %% Gráficos na frequência
-% Primeiro caso - unipolar NRZ
+% b) unipolar NRZ
 figure(4);
 clf;
-format_fig(700, 600);
+format_fig(1500, 300);
 
-subplot(2, 1, 1);
-plot(fx_unrz*1e-3, 10*log10(px_unrz));
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title('x');
+subplot(1, 2, 1);
+plot(fx_unrz * 1e-3, 10 * log10(px_unrz));
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{x}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
-subplot(2, 1, 2);
-plot(fs_ask*1e-3, 10*log10(ps_ask));
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title('s\_ask');
+subplot(1, 2, 2);
+plot(fs_ask * 1e-3, 10 * log10(ps_ask));
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{s\char`_ask}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
 ylim([-130, 0]);
- 
-% Segundo caso - polar NRZ
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
+
+% e) polar NRZ
 figure(5);
 clf;
-format_fig(700, 600);
+format_fig(1500, 300);
 
-subplot(2, 1, 1);
-plot(fx_pnrz*1e-3, 10*log10(px_pnrz));
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title('x');
+subplot(1, 2, 1);
+plot(fx_pnrz * 1e-3, 10 * log10(px_pnrz));
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{x}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
 
-subplot(2, 1, 2);
+subplot(1, 2, 2);
 plot(fs_bpsk*1e-3, 10*log10(ps_bpsk));
-xlabel('Frequência [kHz]');
-ylabel({'Densidade Espectral ', 'de Potência [dB]'});
-title('s\_bpsk');
+xlabel('$f$ [kHz]', 'Interpreter', 'latex', 'FontSize', 18);
+ylabel('$\mathrm{PSD}_\texttt{s\char`_psk}$($f$) [dB]', 'Interpreter', 'latex', 'FontSize', 18);
 ylim([-130, 0]);
- 
-
-
-
-
+grid on
+set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, "fontsize", 14); 
