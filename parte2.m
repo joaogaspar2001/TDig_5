@@ -3,7 +3,7 @@ clearvars;
 init_vars;
 
 % Escolha do alfa desejado
-alfa = 0;
+alfa = 1;
 
 %% Simulação
 out = sim('BPSK_rc');
@@ -13,7 +13,7 @@ x_pnrz = squeeze(out.x.data);
 s_bpsk = squeeze(out.s_psk_rc.data);
 
 [px_pnrz, fx_pnrz] = periodogram(x_pnrz, [], length(x_pnrz), fs);
-[ps_bpsk,fs_bpsk] = periodogram(s_bpsk, [], length(s_bpsk), fs);
+[ps_bpsk, fs_bpsk] = periodogram(s_bpsk, [], length(s_bpsk), fs);
 
 %% Gráficos na frequência
 figure(5);
