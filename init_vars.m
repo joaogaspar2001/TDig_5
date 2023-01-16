@@ -2,7 +2,7 @@
 rng_seed = 5;
 
 % Dados transmitidos
-n_bits = 1000;
+n_bits = 1e3;
 
 % Débito binário
 rb = 1e3;
@@ -19,12 +19,9 @@ fs = spb * rb;
 tsim = n_bits / rb;
 
 % Largura de banda - código unipolar NRZ (= polar NRZ)
-B = rb;
+B = 4e3;
 
 ganho_int = rb;
 
 % Por defeito, ruído nulo
 sigmaquadrado = 0;
-
-
-

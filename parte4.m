@@ -2,7 +2,7 @@
 clearvars;
 init_vars;
 
-lim = 0.25;
+lim = 0.5;
 out = sim('ASK_nc');
 
 t = out.y_ask2.time;

@@ -1,6 +1,7 @@
 %% Parâmetros gerais
 clearvars;
 init_vars;
+n_bits = 10e3;
 
 % Potência de Ruído
 Ts = 1 / fs;
